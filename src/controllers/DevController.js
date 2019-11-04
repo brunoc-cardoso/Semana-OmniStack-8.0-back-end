@@ -22,7 +22,9 @@ module.exports = {
     return res.json(dev);
   },
 
-  async index() {
+  async index(req, res) {
+    const devs = await Dev.find();
 
+    return res.json(devs);
   }
 };
