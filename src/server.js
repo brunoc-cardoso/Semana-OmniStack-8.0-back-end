@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./routes');
+const cors = require('cors');
 
 const port = 3333;
 const server = express();
@@ -11,6 +12,7 @@ mongoose.connect('mongodb+srv://omnistack:omnistack@omnistack9-le6dz.mongodb.net
 });
 
 server.use(express.json());
+server.use(cors());
 server.use(routes);
 
 

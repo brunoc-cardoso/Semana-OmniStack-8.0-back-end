@@ -23,7 +23,6 @@ module.exports = {
   },
 
   async index(req, res) {
-    // const devs = await Dev.find();
     const { user } = req.headers;
     const loggedDev = await Dev.findById(user);
     const users = await Dev.find({
