@@ -4,7 +4,7 @@ const routes = express.Router();
 
 const DevController = require('./controllers/DevController');
 const LikeController = require('./controllers/LikeController');
-const DeslikeController = require('./controllers/DeslikeController');
+const DislikeController = require('./controllers/DislikeController');
 
 routes.get('/', (req, res) => {
   return res.json({ message: 'The server is running' });
@@ -13,9 +13,7 @@ routes.get('/', (req, res) => {
 routes.post('/devs', DevController.store);
 routes.get('/devs', DevController.index);
 
-routes.post('devs/:devID/likes', LikeController.store);
-routes.post('devs/:devID/deslikes', DeslikeController.store);
-
-
+routes.post('/devs/:devId/likes', LikeController.store);
+routes.post('/devs/:devId/dislikes', DislikeController.store);
 
 module.exports = routes;

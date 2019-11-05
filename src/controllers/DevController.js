@@ -23,8 +23,17 @@ module.exports = {
   },
 
   async index(req, res) {
-    const devs = await Dev.find();
+    // const devs = await Dev.find();
+    const { user } = req.headers;
+    const loggedDev = await Dev.findById(user);
+    const users = await Dev.find({
+      $and: [
+        { _id: { $ne: user } },
+        { _id: { $nin: loggedDev.likes } },
+        { _id: { $nin: loggedDev.dislikes } },
+      ]
+    });
 
-    return res.json(devs);
+    return res.json(users);
   }
 };
